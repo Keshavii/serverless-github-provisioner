@@ -1,0 +1,25 @@
+{
+  "repository_details": {
+    "repo_name": "arc-core-photon-data-diff-service",
+    "github_org": "hiyamodi-foundation",
+    "repo_type": "Private",
+    "description": "To create data diff service using duckdb",
+    "code_type": "Java"
+  },
+  "ownership_details": {
+    "vp_name": "Shankar Umamaheshwaran",
+    "director_name": "Surya Narayanan",
+    "em_name": "Allwin S",
+    "product_line": "ARC",
+    "department": "Core (Application Platform)"
+  },
+  "optional_metadata": {
+    "documentation_link": "https://hiyamodi.com/display/ARC/photon-data-diff",
+    "bucket_name": "arc-core-photon-data-diff-service",
+    "additional_notes": "",
+    "tags": [],
+    "cost_center": "",
+    "project_id": ""
+  }
+}
+

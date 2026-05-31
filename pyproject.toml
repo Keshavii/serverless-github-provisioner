@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "github-auto-repo-creation"
+version = "1.0.0"
+description = "Event-driven serverless system for automated GitHub repository provisioning via JIRA workflows"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+authors = [
+    {name = "Hiya Modi"},
+]
+keywords = ["github", "jira", "automation", "serverless", "aws-lambda", "terraform"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Build Tools",
+]
+
+dependencies = [
+    "PyGithub>=2.1.1",
+    "jira>=3.5.2",
+    "requests>=2.31.0",
+    "pydantic>=2.5.3",
+    "pydantic-settings>=2.1.0",
+    "structlog>=23.2.0",
+    "python-json-logger>=2.0.7",
+    "cryptography>=41.0.0",
+    "boto3>=1.34.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.3",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+    "responses>=0.24.1",
+    "python-dotenv>=1.0.0",
+    "mypy>=1.7.1",
+    "types-requests>=2.31.0",
+    "black>=23.12.1",
+    "flake8>=6.1.0",
+    "isort>=5.13.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+line_length = 120
+known_first_party = ["src"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+no_strict_optional = true
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*", "*/test_*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+fail_under = 50

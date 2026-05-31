@@ -1,0 +1,5 @@
+Repo creation function.
+    1. Define and update arguments.
+    2. Handle Org not found(check whether drop down in jira form in that case not needed else modify this part)
+    3. Decide value of x,y,a and dlq_handler
+    4. Create docs

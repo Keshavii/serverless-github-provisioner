@@ -1,0 +1,21 @@
+# Lambda Layer Dependencies (Production Only)
+# This file contains only the runtime dependencies needed by Lambda functions
+# Dev dependencies (pytest, mypy, black, etc.) are excluded to avoid conflicts
+
+# Core Dependencies
+PyGithub==2.1.1          # GitHub API client
+jira==3.5.2              # JIRA API client
+requests==2.31.0         # HTTP client
+python-dotenv==1.0.0     # Environment variable management
+cryptography>=41.0.0     # Required by PyGithub for JWT token signing (GitHub App auth)
+
+# Validation
+pydantic==2.5.3          # Data validation
+pydantic-settings==2.1.0 # Settings management
+
+# Logging
+structlog==23.2.0        # Structured logging
+python-json-logger==2.0.7 # JSON logging
+
+# Note: boto3 and botocore are pre-installed in Lambda runtime, so we don't include them
+# This avoids the urllib3 version conflict between botocore and types-requests

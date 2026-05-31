@@ -1,0 +1,81 @@
+# ============================================================================
+# GITHUB CREDENTIALS
+# ============================================================================
+github_app_id = "YOUR_GITHUB_APP_ID"
+disable_custom_properties = "false"
+github_app_private_key = <<-EOT
+-----BEGIN RSA PRIVATE KEY-----
+YOUR_PRIVATE_KEY_HERE
+-----END RSA PRIVATE KEY-----
+EOT
+
+# ============================================================================
+# JIRA CREDENTIALS
+# ============================================================================
+jira_url       = "https://your-company.atlassian.net"
+jira_email     = "your-email@company.com"
+jira_token     = "YOUR_JIRA_API_TOKEN"
+
+# ============================================================================
+# ENVIRONMENT
+# ============================================================================
+environment = "test"
+
+# ============================================================================
+# LAMBDA RUNTIME (Using Python 3.9)
+# ============================================================================
+lambda_runtime = "3.9"
+
+# ============================================================================
+# JIRA AUTO-TRANSITION CONFIGURATION
+# ============================================================================
+auto_transition_on_success  = "true"
+success_transition_name     = "Done"
+success_resolution          = ""
+
+auto_transition_on_failure  = "false"
+failure_transition_name     = "Manual Review"
+failure_resolution          = ""
+
+auto_transition_on_webhook_failure = "false"
+webhook_failure_transition_name    = "Manual Review"
+webhook_failure_resolution         = ""
+
+# ============================================================================
+# TESTING CONFIGURATION (DLQ Testing)
+# ============================================================================
+# Force GitHub API to return specific error code for testing
+# 
+# Examples:
+#   force_github_error_code = "429"  # Rate limit error
+#   force_github_error_code = "500"  # Internal server error
+#   force_github_error_code = "503"  # Service unavailable
+#   force_github_error_code = ""     # Normal operation (NO ERRORS)
+#
+# ⚠️  IMPORTANT:
+#   - Test environments: Can be set to error codes for testing
+#   - Production: MUST be empty "" (disabled)
+#
+# Usage:
+#   1. For automated testing:
+#      ./test_dlq_flow.sh test 429
+#      (This automatically sets the variable)
+#
+#   2. For manual testing:
+#      terraform apply -var="force_github_error_code=429"
+#
+#   3. To disable:
+#      terraform apply -var="force_github_error_code="
+#
+# What it does:
+#   - When set to "429", Lambda will immediately raise a GitHub API error (429)
+#   - No real GitHub API calls are made
+#   - Triggers SQS retry logic → 3 retries → DLQ
+#   - Logs show: "TEST MODE: Forcing GitHub API error 429"
+#
+# Safety:
+#   - Default is "" (empty = disabled)
+#   - Logs WARNING when test mode is active
+#   - Production should NEVER have this set
+#
+force_github_error_code = ""
