@@ -1,4 +1,4 @@
-# GitHub Auto-Repository Provisioning System
+# Serverless GitHub Provisioner
 
 > **Event-driven serverless system that automates GitHub repository creation from JIRA ticket workflows, eliminating manual DevOps toil for engineering teams.**
 
